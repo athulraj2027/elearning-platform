@@ -1,1 +1,0 @@
-exports.AdminSigninController = async(req,res)=>{}

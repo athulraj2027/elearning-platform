@@ -10,6 +10,7 @@ const StudentSchema = new Schema({
   CategoriesInterested: [{ type: Schema.Types.ObjectId, required: true }],
   Name: { type: String, required: true, unique: true },
   Password: { type: String },
+  googleId: { type: String, default: undefined },
 });
 
 const Student = mongoose.model("Student", StudentSchema);

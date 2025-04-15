@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const AdminAuthControllers = require("../../Controllers/AdminControllers/AdminAuthControllers");
+const AdminAuthControllers = require("../../Controllers/AdminControllers/AuthControllers");
 
 router.route("/signin").post(AdminAuthControllers.AdminSigninController);
 

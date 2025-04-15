@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const Student = require("../../Models/Student");
 const SALT = parseInt(process.env.SALT) || 10;
 const { generateJWT } = require("../../services/jwt");
