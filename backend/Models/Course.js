@@ -2,6 +2,18 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
+const LectureSchema = new Schema({
+  name: { type: String, required: true },
+  video: {},
+  note: {},
+});
+
+const ReviewSchema = new Schema({
+  review: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: "Student", required: true },
+  rating: { type: Number, required: true },
+});
+
 const CourseSchema = new Schema({
   Name: { type: String, required: true },
   description: { type: String, required: true },
@@ -10,10 +22,13 @@ const CourseSchema = new Schema({
   DiscountedPrice: { type: Number, required: true },
   NumberOfStudentsEnrolled: { type: Number, required: true },
   Price: { type: Number, required: true },
+  Content: [LectureSchema],
   CreatedAt: { type: Date, default: Date.now(), required: true },
+  updatedAt: { type: Date, default: Date.now(), required: true },
   isDeleted: { type: Boolean, default: false },
   maxStudents: { type: Number, required: true },
-  // Rating,Reviews
+  Requirements: [{ type: String }],
+  Reviews: [ReviewSchema],
 });
 
 const Course = mongoose.model("Course", CourseSchema);
