@@ -7,5 +7,6 @@ router.route("/edit/:id").put(CouponController.EditCouponController);
 router
   .route("/toggle-status/:id")
   .post(CouponController.ToggleCouponStatusController);
+router.route("/").get(CouponController.GetCouponsController);
 
 module.exports = router;

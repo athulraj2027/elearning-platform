@@ -23,3 +23,14 @@ exports.AdminAddCourseController = async (req, res) => {
       .json({ message: "Server error in add course controller" });
   }
 };
+
+exports.GetCourseController = async (req, res) => {
+  try {
+    const courses = await Course.find({});
+    if (!courses)
+      return res.status(400).json({ message: "Couldn't get courses" });
+    return res.status(200).send(courses);
+  } catch (error) {
+    console.error("Error in loading courses : ", error);
+  }
+};

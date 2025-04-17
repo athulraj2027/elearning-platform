@@ -1,4 +1,5 @@
 const Coupon = require("../../Models/Coupon");
+
 exports.AddCouponController = async (req, res) => {
   const {
     code,
@@ -85,5 +86,17 @@ exports.ToggleCouponStatusController = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ Error: error });
+  }
+};
+
+exports.GetCouponsController = async (req, res) => {
+  try {
+    const coupons = await Coupon.find({});
+    if (!coupons)
+      return res.status(400).json({ message: "Couldn't get coupons" });
+    return res.status(200).send(coupons);
+    
+  } catch (error) {
+    console.error("Error in loading coupons : ", error);
   }
 };
