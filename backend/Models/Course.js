@@ -29,6 +29,7 @@ const CourseSchema = new Schema({
   maxStudents: { type: Number, required: true },
   Requirements: [{ type: String }],
   Reviews: [ReviewSchema],
+  isVerified: { type: Boolean, required: true, default: false },
 });
 
 const Course = mongoose.model("Course", CourseSchema);

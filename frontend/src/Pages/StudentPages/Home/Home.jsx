@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Home = () => {
-  const [active, setActive] = useState(null);
+//   const [active, setActive] = useState(null);
   const categories = [
     { name: "Data Science" },
     { name: "Data Science" },
@@ -20,7 +20,7 @@ const Home = () => {
             <li key={index}>
               <div
                 className="hover:bg-violet-400 hover:text-white p-4 rounded-full"
-                onClick={() => setActive(category.name)}
+                // onClick={() => setActive(category.name)}
               >
                 {category.name}
               </div>
