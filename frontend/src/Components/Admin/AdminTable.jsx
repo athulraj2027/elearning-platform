@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import AddCategory from "../../Pages/AdminPages/Categories/Components/AddCategory";
+import { UseAppContext } from "../../Context/AppContext/AppContext";
 
 const AdminTable = (props) => {
+  const {modal, setModal} = UseAppContext()
+  const [modalType, setModalType] = useState();
+  const [modalAction, setModalAction] = useState();
+  const componentMap = {
+    category: {
+      add: AddCategory,
+    },
+  };
+
+  const DynamicComponent = componentMap[modalType]?.[modalAction] || null;
+
+  const handleModal = (type, action) => {
+    setModalType(type);
+    setModalAction(action);
+  };
   return (
     <div>
       <div className="flex flex-col gap-3 sm:flex-row justify-between">
@@ -24,7 +41,13 @@ const AdminTable = (props) => {
           ))}
         </select>
         {props.addBtn && (
-          <button className="float-right bg-violet-500 p-2 w-[150px] rounded-md text-white">
+          <button
+            className="float-right bg-violet-500 p-2 w-[150px] rounded-md text-white cursor-pointer"
+            onClick={() => {
+              setModal(true);
+              handleModal(props.type, "add");
+            }}
+          >
             Add {props.pageName}
           </button>
         )}
@@ -41,34 +64,49 @@ const AdminTable = (props) => {
             <th className=" text-violet-400 w-[120px]">Actions</th>
           </tr>
         </thead>
-        {props.data.map((data, index) => {
-          return (
-            <tr className="h-[40px] border-t border-t-gray-500">
-              <td className="text-center">{index + 1}</td>
-              {props.headers.map((header, colIndex) => (
-                <td key={colIndex} className="text-center">
-                  {data[header.key] ?? "--"}
+        <tbody>
+          {props.data.map((data, index) => {
+            return (
+              <tr className="h-[40px] border-t border-t-gray-500" key={index}>
+                <td className="text-center">{index + 1}</td>
+                {props.headers.map((header, colIndex) => (
+                  <td key={colIndex} className="text-center">
+                    {data[header.key] ?? "--"}
+                  </td>
+                ))}
+                <td className="text-center flex flex-wrap gap-2 justify-center items-center">
+                  {props.activateBtn && (
+                    <button className="px-3 py-1 rounded-md text-white bg-green-500">
+                      Activate
+                    </button>
+                  )}
+                  {props.editBtn && (
+                    <button className="px-3 py-1 rounded-md text-white bg-orange-500">
+                      Edit
+                    </button>
+                  )}
+                  <button className="px-3 py-1 rounded-md text-white bg-red-500">
+                    Delete
+                  </button>
                 </td>
-              ))}
-              <td className="text-center flex flex-wrap gap-2 justify-center items-center">
-                {props.activateBtn && (
-                  <button className="px-3 py-1 rounded-md text-white bg-green-500">
-                    Activate
-                  </button>
-                )}
-                {props.editBtn && (
-                  <button className="px-3 py-1 rounded-md text-white bg-orange-500">
-                    Edit
-                  </button>
-                )}
-                <button className="px-3 py-1 rounded-md text-white bg-red-500">
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })}
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
+      {modal && DynamicComponent && (
+        <div className="inset-0 z-50 w-full h-full fixed top-0 right-0 bg-black/50 flex justify-center items-center">
+          <div className="bg-white p-5 rounded-md overflow-auto">
+            <DynamicComponent />
+            <button
+              className="bg-red-500 text-white p-2 rounded-md"
+              onClick={() => setModal(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AdminTable from "../../../Components/Admin/AdminTable";
+
 const Categories = () => {
+  const [categories, setCategories] = useState([]);
   const sortOptions = [
     { name: "Number of courses ( Higher to lower )", value: "cou-desc" },
     { name: "Number of courses ( Lower to higher )", value: "cou-asc" },
@@ -17,19 +20,32 @@ const Categories = () => {
     { name: "Unverified" },
   ];
   const columns = [
-    { name: "Name", key: "name" },
-    { name: "Number of Courses", key: "numOfCourses" },
+    { name: "Name", key: "Name" },
+    { name: "Number of Courses", key: "NoOfCourses" },
     { name: "Created At", key: "createdAt" },
     { name: "Status", key: "status" },
   ];
-  const categories = [
-    {
-      name: "Development",
-      numOfCourses: 3,
-      createdAt: "13 mar 2024",
-      status: "active",
-    },
-  ];
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get("/api/admin/categories");
+        console.log(data)
+        setCategories(data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCategories();
+  }, []);
+  // const categories = [
+  //   {
+  //     name: "Development",
+  //     numOfCourses: 3,
+  //     createdAt: "13 mar 2024",
+  //     status: "active",
+  //   },
+  // ];
 
   return (
     <>
@@ -42,6 +58,7 @@ const Categories = () => {
         addBtn={true}
         editBtn={true}
         activateBtn={true}
+        type="category"
       />
     </>
   );

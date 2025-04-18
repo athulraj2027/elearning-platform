@@ -22,9 +22,9 @@ const SideBar = () => {
       <ul className="flex flex-col h-[100%] justify-around">
         <li className="text-2xl text-yellow-300 hidden sm:block">LearnEmy</li>
         {options.map((item, index) => (
-          <Link to={`/admin/${item.name.toLowerCase()}`}>
+          <Link to={`/admin/${item.name.toLowerCase()}` }  key={index}>
             <li
-              key={index}
+             
               className="hover:bg-white flex gap-1 hover:text-violet-600 p-3 rounded-md"
             >
               {item.icon}
