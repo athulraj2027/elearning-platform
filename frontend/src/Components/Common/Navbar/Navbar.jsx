@@ -20,7 +20,9 @@ const Navbar = () => {
       <div className="text-black sm:hidden" onClick={() => setMenuOpen(true)}>
         {menuIcon}
       </div>
-      <Link to="/" className="text-xl sm:text-2xl text-violet-600">Learnemy</Link>
+      <Link to="/students" className="text-xl sm:text-2xl text-violet-600">
+        Learnemy
+      </Link>
       <div className="text-sm flex gap-3 sm:hidden">
         {search}
         {cart}
@@ -31,7 +33,7 @@ const Navbar = () => {
           <li>Courses</li>
           <li>
             <Link
-              to="/login"
+              to="/students/login"
               className="border border-violet-600 rounded-sm px-3 py-1 text-violet-600 hover:bg-violet-600 hover:text-white"
             >
               Log In
@@ -39,7 +41,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/signup"
+              to="/students/signup"
               className="border border-violet-600 rounded-sm px-3 py-1 text-violet-600 hover:bg-violet-600 hover:text-white "
             >
               Sign Up

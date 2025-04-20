@@ -30,7 +30,7 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get("/api/admin/categories");
-        console.log(data)
+       
         setCategories(data)
       } catch (error) {
         console.error(error);

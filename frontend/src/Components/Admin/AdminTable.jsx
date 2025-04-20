@@ -85,9 +85,9 @@ const AdminTable = (props) => {
                       Edit
                     </button>
                   )}
-                  <button className="px-3 py-1 rounded-md text-white bg-red-500">
+                  {/* <button className="px-3 py-1 rounded-md text-white bg-red-500">
                     Delete
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             );

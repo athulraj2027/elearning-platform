@@ -6,4 +6,5 @@ const cartRoutes = require("./cartRoutes");
 router.use("/auth", authRoutes);
 router.use("/cart", cartRoutes);
 
+
 module.exports = router;

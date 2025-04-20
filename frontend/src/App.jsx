@@ -5,8 +5,8 @@ import { ToastContainer } from "react-toastify";
 import Login from "./Pages/StudentPages/Login/Login";
 import Signup from "./Pages/StudentPages/Signup/Signup";
 import Home from "./Pages/StudentPages/Home/Home";
-import TutorsLogin from "./Pages/TeacherPages/Login/TutorsLogin";
-import TutorsSignup from "./Pages/TeacherPages/Signup/TutorsSignup";
+import TutorsLogin from "./Pages/TeacherPages/TutorsLogin";
+import TutorsSignup from "./Pages/TeacherPages/TutorsSignup";
 import AdminLogin from "./Pages/AdminPages/Login/AdminLogin";
 import StudentLayout from "./Layouts/StudentLayout";
 import TutorLayout from "./Layouts/TutorLayout";
@@ -19,6 +19,7 @@ import Coupons from "./Pages/AdminPages/Coupons/Coupons";
 import Offers from "./Pages/AdminPages/Offers/Offers";
 import Courses from "./Pages/AdminPages/Courses/Courses";
 import Purchases from "./Pages/AdminPages/Purchases/Purchases";
+import Profile from "./Pages/TeacherPages/Profile/Profile";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="tutors" element={<TutorLayout />}>
           <Route path="login" element={<TutorsLogin />} />
           <Route path="signup" element={<TutorsSignup />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         {/* Admin Routes */}

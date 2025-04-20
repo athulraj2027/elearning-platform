@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { Schema,  } = mongoose;
+const { Schema } = mongoose;
 
 const StudentSchema = new Schema({
   JoinedDate: { type: Date, default: Date.now, required: true },

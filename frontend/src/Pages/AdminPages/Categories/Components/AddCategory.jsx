@@ -37,12 +37,12 @@ const AddCategory = () => {
   // Handling form submission
 
   const formSubmitHandler = async () => {
-    console.log("hi");
+  
     if (!name || !description || !image) {
       console.log("hi");
       return toast.error("Credentials missing");
     }
-    console.log("regex checking");
+   
     const nameRegex = /^[a-zA-Z0-9 _-]{3,30}$/;
     const descriptionRegex = /^.{10,300}$/;
 
@@ -51,7 +51,7 @@ const AddCategory = () => {
       return toast.error("Invalid syntax for description");
 
     try {
-      console.log("in the try section");
+     
       const config = { headers: { "Content-Type": "multipart/form-data" } };
       const formData = new FormData();
       formData.append("name", name);

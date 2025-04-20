@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminTable from "../../../Components/Admin/AdminTable";
+import axios from "axios";
 
 const Customers = () => {
+  const [customers, setCustomers] = useState([]);
   const sortOptions = [
     { name: "No. of purchases ( Higher to lower )", value: "cou-desc" },
     { name: "Number of purchases ( Lower to higher )", value: "cou-asc" },
@@ -16,19 +18,23 @@ const Customers = () => {
     { name: "Blocked" },
   ];
   const columns = [
-    { name: "Name", key: "name" },
-    { name: "Number of Purchases", key: "numOfPurchases" },
-    { name: "Joined At", key: "joinedAt" },
-    { name: "Status", key: "status" },
+    { name: "Name", key: "Name" },
+    { name: "Number of Purchases", key: "CoursesEnrolled" },
+    { name: "Joined At", key: "JoinedDate" },
+    { name: "Status", key: "IsActive" },
   ];
-  const customers = [
-    {
-      name: "athul",
-      numOfPurchases: 5,
-      joinedAt: "23 Mar 2024",
-      status: "Active",
-    },
-  ];
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const { data } = await axios.get("/api/admin/customers");
+        setCustomers(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCustomers();
+  }, []);
 
   return (
     <AdminTable
